@@ -2,7 +2,7 @@
 
 ## Description
 
-MyToDo App is a simple and minimalistic Todo application built to demonstrate basic task management features in a limited time. The app supports the full range of CRUD operations to manage tasks efficiently.
+MyToDo App is a simple, minimalist to-do application designed to showcase basic task management features within a limited timeframe. The app supports the full range of CRUD operations for efficient task management.
 
 It was built using **Laravel 12** for the backend, **Vue.js** for the frontend, and **MySQL** as the database.
 
