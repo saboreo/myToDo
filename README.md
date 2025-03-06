@@ -1,5 +1,7 @@
 # MyToDo App
 
+<img width="1353" alt="image" src="https://github.com/user-attachments/assets/beca69b6-5898-4d46-a749-63686844aac5" />
+
 ## Description
 
 MyToDo App is a simple, minimalist to-do application designed to showcase basic task management features within a limited timeframe. The app supports the full range of CRUD operations for efficient task management.
@@ -51,3 +53,4 @@ To get this application running on your local machine, follow the steps below:
 - **Database:** **MySQL** is used as the relational database to store task data. This choice aligns with the project requirements and is preferred over SQLite, which would have been the default option for a minimalistic app.
 - **User Interface:** The user interface is designed to be minimalistic, clean, and very user-friendly. The frontend is styled using **Tailwind CSS**, providing a responsive layout suitable for both desktop and mobile devices. Additionally, the **shadcn-vue** component library is leveraged to speed up development.
 - **Pagination:** To efficiently manage large sets of tasks, pagination is implemented, ensuring the app performs well even when the task list grows significantly.
+
