@@ -19,6 +19,17 @@ First, you'll need to register a new user. Once the user is registered, a set of
 - **Edit Task:** Users can update each task.
 - **Delete Task:** Tasks can be removed from the list.
 - **Pagination:** Pagination is implemented to handle long task lists efficiently.
+- **User authentication:** Account registration and authentication.
+- **Themes:** Dark & Light Mode support.
+- **Flash messages:** Session flash messaging is used for user feedback on actions.
+- **Pest:** Feature and unit tests for backend validation.
+- **Usage of Laravel Features:**
+    - **Controllers:** Manage task CRUD operations and dashboard display.
+    - **Models:** Define task and user data structures.
+    - **Policies:** Enforce task authorization rules.
+    - **Database Factories:** Generate test data for seeding and testing.
+    - **Migrations:** Define and manage database schema changes.
+    - **Request Rules:** Validate user input before processing actions.
 
 ---
 
@@ -53,4 +64,4 @@ To get this application running on your local machine, follow the steps below:
 - **Database:** **MySQL** is used as the relational database to store task data. This choice aligns with the project requirements and is preferred over SQLite, which would have been the default option for a minimalistic app.
 - **User Interface:** The user interface is designed to be minimalistic, clean, and very user-friendly. The frontend is styled using **Tailwind CSS**, providing a responsive layout suitable for both desktop and mobile devices. Additionally, the **shadcn-vue** component library is leveraged to speed up development.
 - **Pagination:** To efficiently manage large sets of tasks, pagination is implemented, ensuring the app performs well even when the task list grows significantly.
-
+- **Flash Messages:** Reflects on UX standards by providing clear feedback to the user after certain actions.
