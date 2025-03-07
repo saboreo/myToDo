@@ -2,6 +2,8 @@
 
 <img width="1353" alt="image" src="https://github.com/user-attachments/assets/beca69b6-5898-4d46-a749-63686844aac5" />
 
+_Dashboard view_
+
 ## Description
 
 MyToDo App is a simple, minimalist to-do application designed to showcase basic task management features within a limited timeframe. The app supports the full range of CRUD operations for efficient task management.
@@ -54,6 +56,7 @@ To get this application running on your local machine, follow the steps below:
 5. Install Node.js Dependencies: `npm install`
 6. Compile Frontend Assets: `npm run dev`
 7. Run the Application Locally: `php artisan serve`
+8. To run the tests, execute `php artisan test` or `./vendor/bin/pest` in your terminal.
 
 ---
 
@@ -65,3 +68,4 @@ To get this application running on your local machine, follow the steps below:
 - **User Interface:** The user interface is designed to be minimalistic, clean, and very user-friendly. The frontend is styled using **Tailwind CSS**, providing a responsive layout suitable for both desktop and mobile devices. Additionally, the **shadcn-vue** component library is leveraged to speed up development.
 - **Pagination:** To efficiently manage large sets of tasks, pagination is implemented, ensuring the app performs well even when the task list grows significantly.
 - **Flash Messages:** Reflects on UX standards by providing clear feedback to the user after certain actions.
+- **Backend Tests:** Pest was chosen for testing because its expressive syntax and simplicity allow us to write clean, maintainable tests, ensuring that our application functionality is robust and reliable.
