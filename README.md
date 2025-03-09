@@ -107,8 +107,8 @@ cp .env.example .env
 
 3. Start the Docker containers.
 
-```bash
-cp .env.example .env
+```
+docker compose up -d
 ```
 
 4. Access the application at
