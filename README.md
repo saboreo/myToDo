@@ -37,7 +37,7 @@ First, you'll need to register a new user. Once the user is registered, a set of
 
 ## Installation Instructions
 
-To get this application running on your local machine, follow the steps below:
+To get this application running on your local machine, follow the steps below. You can run this application either locally or using Docker. Choose the method that works best for you.
 
 ### Prerequisites
 
@@ -49,14 +49,81 @@ To get this application running on your local machine, follow the steps below:
 
 ### Setup
 
+#### Option 1: (Recommended)
+
 1. Clone the Repository.
-2. Install PHP Dependencies: `composer install`
+2. Install PHP Dependencies:
+
+```
+composer install
+```
+
 3. Configure your database credentials.
-4. Run Migrations: `php artisan migrate`
-5. Install Node.js Dependencies: `npm install`
-6. Compile Frontend Assets: `npm run dev`
-7. Run the Application Locally: `php artisan serve`
-8. To run the tests, execute `php artisan test` or `./vendor/bin/pest` in your terminal.
+
+```yaml
+# Example:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mytodo
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+4. Run Migrations:
+
+```
+php artisan migrate
+```
+
+5. Install Node.js Dependencies:
+
+```
+npm install
+```
+
+6. Compile Frontend Assets:
+
+```
+npm run dev
+```
+
+7. Run the Application Locally:
+
+```
+php artisan serve
+```
+
+To run the tests, execute `php artisan test` or `./vendor/bin/pest` in your terminal.
+
+#### Option 2: (Using Docker).
+
+1. Clone the Repository.
+2. Copy the environment file.
+
+```
+cp .env.example .env
+```
+
+3. Start the Docker containers.
+
+```bash
+cp .env.example .env
+```
+
+4. Access the application at
+
+```
+http://localhost:8000
+```
+
+That's it! The Docker setup will automatically:
+
+- Build the PHP environment.
+- Install all dependencies.
+- Run database migrations.
+- Build frontend assets.
+- Start the web server.
 
 ---
 
