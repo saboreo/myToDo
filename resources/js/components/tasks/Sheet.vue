@@ -103,6 +103,8 @@ const handleSubmit = () => {
         Inertia.patch(route('tasks.update', form.value.id), form.value, options);
     }
 };
+
+const activeDropdown = ref<'status' | 'priority' | null>(null);
 </script>
 
 <template>
@@ -133,7 +135,11 @@ const handleSubmit = () => {
                 <div class="grid grid-cols-4 gap-4">
                     <Label for="status" class="self-start pt-2 text-right"> Status <span class="text-destructive">*</span> </Label>
                     <div class="col-span-3 space-y-1">
-                        <Select v-model="form.status">
+                        <Select
+                            v-model="form.status"
+                            :open="activeDropdown === 'status'"
+                            @update:open="(open) => (activeDropdown = open ? 'status' : null)"
+                        >
                             <SelectTrigger :class="{ 'border-destructive': errors.status }">
                                 <SelectValue placeholder="Select status" />
                             </SelectTrigger>
@@ -154,7 +160,11 @@ const handleSubmit = () => {
                 <div class="grid grid-cols-4 gap-4">
                     <Label for="priority" class="self-start pt-2 text-right"> Priority <span class="text-destructive">*</span> </Label>
                     <div class="col-span-3 space-y-1">
-                        <Select v-model="form.priority">
+                        <Select
+                            v-model="form.priority"
+                            :open="activeDropdown === 'priority'"
+                            @update:open="(open) => (activeDropdown = open ? 'priority' : null)"
+                        >
                             <SelectTrigger :class="{ 'border-destructive': errors.priority }">
                                 <SelectValue placeholder="Select priority" />
                             </SelectTrigger>
