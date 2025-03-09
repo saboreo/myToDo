@@ -1,32 +1,47 @@
-FROM php:8.2-fpm
+FROM php:8.4-fpm
 
 RUN apt-get update && apt-get install -y \
+    build-essential \
     libpng-dev \
-    libjpeg-dev \
+    libjpeg62-turbo-dev \
     libfreetype6-dev \
-    zip \
+    locales \
     git \
-    libicu-dev \
+    curl \
     libonig-dev \
-    libzip-dev \
-    unzip
+    zip \
+    unzip \
+    libzip-dev
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install gd pdo pdo_mysql opcache intl mbstring zip
+# Install PHP ZIP extension.
+RUN docker-php-ext-install zip
 
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set working directory in the container
-WORKDIR /var/www
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Copy the application files into the container
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Install Node.js and npm.
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+RUN apt-get install -y nodejs
+
+WORKDIR /var/www/html
+
+COPY composer.json composer.lock ./
+RUN composer install --no-scripts --no-autoloader
+
+COPY package.json package-lock.json ./
+RUN npm install
+
 COPY . .
 
-RUN composer install --optimize-autoloader --no-dev --no-interaction
+RUN composer dump-autoload
 
-# Set correct file permissions
-RUN chown -R www-data:www-data /var/www
+RUN npm run build
+
+RUN chown -R www-data:www-data /var/www/html
+USER www-data
 
 EXPOSE 9000
-
 CMD ["php-fpm"]
