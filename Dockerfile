@@ -29,7 +29,7 @@ RUN apt-get install -y nodejs
 WORKDIR /var/www/html
 
 COPY composer.json composer.lock ./
-RUN composer install --no-scripts --no-autoloader
+RUN composer install
 
 COPY package.json package-lock.json ./
 RUN npm install
