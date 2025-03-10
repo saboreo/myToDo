@@ -145,7 +145,12 @@ const activeDropdown = ref<'status' | 'priority' | null>(null);
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                    <SelectItem v-for="status in statuses" :key="status" :value="status">
+                                    <SelectItem
+                                        v-for="status in statuses"
+                                        :key="status"
+                                        :value="status"
+                                        class="hover:bg-gray-100 dark:hover:bg-neutral-800"
+                                    >
                                         {{ capitalise(status) }}
                                     </SelectItem>
                                 </SelectGroup>
@@ -170,9 +175,9 @@ const activeDropdown = ref<'status' | 'priority' | null>(null);
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                    <SelectItem value="low">Low</SelectItem>
-                                    <SelectItem value="medium">Medium</SelectItem>
-                                    <SelectItem value="high">High</SelectItem>
+                                    <SelectItem value="low" class="hover:bg-gray-100 dark:hover:bg-neutral-800">Low</SelectItem>
+                                    <SelectItem value="medium" class="hover:bg-gray-100 dark:hover:bg-neutral-800">Medium</SelectItem>
+                                    <SelectItem value="high" class="hover:bg-gray-100 dark:hover:bg-neutral-800">High</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
