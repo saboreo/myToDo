@@ -29,6 +29,8 @@ services:
     working_dir: /var/www/html
     volumes:
       - .:/var/www/html
+      - vendor:/var/www/html/vendor
+      - node_modules:/var/www/html/node_modules
       - ./docker/php.ini:/usr/local/etc/php/php.ini
     networks:
       - mytodo-network
@@ -37,6 +39,7 @@ services:
         condition: service_healthy
     command: >
       sh -c '
+        php artisan key:generate --force &&
         php artisan migrate &&
         php artisan optimize:clear &&
         npm run build &&
@@ -65,3 +68,5 @@ networks:
 volumes:
   dbdata:
     driver: local
+  vendor:
+  node_modules:

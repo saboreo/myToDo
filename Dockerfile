@@ -1,47 +1,46 @@
 FROM php:8.4-fpm
 
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
     git \
     curl \
+    libpng-dev \
+    libjpeg-dev \
     libonig-dev \
     zip \
     unzip \
     libzip-dev
 
-# Install PHP ZIP extension.
-RUN docker-php-ext-install zip
-
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install zip pdo_mysql mbstring exif pcntl bcmath gd
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install Node.js and npm.
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
 RUN apt-get install -y nodejs
 
 WORKDIR /var/www/html
 
-COPY composer.json composer.lock ./
-RUN composer install
-
-COPY package.json package-lock.json ./
-RUN npm install
-
 COPY . .
 
-RUN composer dump-autoload
+# Create directories and set additional permissions.
+RUN mkdir -p \
+    /var/www/.composer \
+    /var/www/.npm \
+    storage/framework/cache/data \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/logs \
+    bootstrap/cache \
+    vendor \
+    node_modules \
+    && chown -R www-data:www-data /var/www \
+    && chmod -R 775 storage bootstrap/cache
 
-RUN npm run build
-
-RUN chown -R www-data:www-data /var/www/html
 USER www-data
+
+RUN composer install \
+    && composer dump-autoload --optimize \
+    && npm install \
+    && npm run build
 
 EXPOSE 9000
 CMD ["php-fpm"]
