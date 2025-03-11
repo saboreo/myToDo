@@ -199,7 +199,7 @@ const handlePagination = (newPage: number) => {
                         <DialogDescription> Are you sure you want to delete this task? </DialogDescription>
                     </DialogHeader>
 
-                    <DialogFooter>
+                    <DialogFooter class="flex-col gap-2 sm:flex-row">
                         <Button variant="outline" @click="showSheetDelete = false"> Cancel </Button>
                         <Button @click="deleteTask"> Delete </Button>
                     </DialogFooter>
